@@ -30,25 +30,4 @@ function getOptions(): Options {
 
 function onRejection(rejectValue: unknown) {
   console.error(rejectValue)
-  /* We don't `process.exit(1)` in order to avoid:
-   ````shell
-   FATAL ERROR: v8::FromJust Maybe value is Nothing.
-    1: 0xb57b90 node::Abort() [node]
-    2: 0xa701b3 node::FatalError(char const*, char const*) [node]
-    3: 0xd4388a v8::Utils::ReportApiFailure(char const*, char const*) [node]
-    4: 0xb5bfed node::fs::FileHandle::CloseReq::Resolve() [node]
-    5: 0xb5c170  [node]
-    6: 0x1634dbd  [node]
-    7: 0x1639596  [node]
-    8: 0x164bcd4  [node]
-    9: 0x1639ee8 uv_run [node]
-   10: 0xa95e45 node::SpinEventLoop(node::Environment*) [node]
-   11: 0xc22472 node::worker::Worker::Run() [node]
-   12: 0xc22a58  [node]
-   13: 0x7b9e873a1fa3  [/lib/x86_64-linux-gnu/libpthread.so.0]
-   14: 0x7b9e872d306f clone [/lib/x86_64-linux-gnu/libc.so.6]
-   Aborted (core dumped)
-   ```
-  process.exit(1)
-  */
 }

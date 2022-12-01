@@ -30,14 +30,3 @@ async function buildCode({ entries }: Options) {
     }
   })
 }
-
-/*
-function getPackageJson(): Record<string, unknown> {
-  const content = getJsonFile(
-    'framework-builder.json',
-    (cwd: string) =>
-      `The current directory ${cwd} doesn't seem to be the root directory of you project. Make sure to run \`$ framework-builder\` at your project's root directory.`
-  )
-  return content
-}
-*/
