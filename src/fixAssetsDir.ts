@@ -3,15 +3,15 @@ export { FRAMEWORK_BUILDER_ASSET_DIR }
 
 import { crawlAllFiles } from './utils'
 import path from 'path'
-import { fileURLToPath } from 'url'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 import { promises as fsp } from 'fs'
 import assert from 'assert'
 const FRAMEWORK_BUILDER_ASSET_DIR = 'FRAMEWORK_BUILDER_ASSET_DIR/'
+import { DIST } from './build'
 
 // Workaround for https://github.com/evanw/esbuild/issues/2707 [Feature Request] New option `--assets-base`
 async function fixAssetsDir() {
-  const distDir = path.join(__dirname, './dist/')
+  const cwd = process.cwd()
+  const distDir = path.join(cwd, DIST)
   const distFiles = await crawlAllFiles(distDir)
   await Promise.all(
     distFiles.map(async (filePath) => {
