@@ -23,7 +23,6 @@ async function buildCode({ entries }: Options) {
     entry: entries,
     format: 'esm',
     clean: true,
-    sourcemap: true,
     dts: true,
     esbuildOptions(options) {
       options.publicPath = FRAMEWORK_BUILDER_ASSET_DIR
