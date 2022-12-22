@@ -7,6 +7,7 @@ import { fixAssetsDir, FRAMEWORK_BUILDER_ASSET_DIR } from './fixAssetsDir'
 const DIST = './dist/'
 
 type Options = {
+  watch: boolean
   entries: string[]
 }
 
@@ -15,8 +16,9 @@ async function build(options: Options) {
   await fixAssetsDir()
 }
 
-async function buildCode({ entries }: Options) {
+async function buildCode({ entries, watch }: Options) {
   await tsup({
+    watch,
     config: false,
     outDir: DIST,
     silent: true,

@@ -18,14 +18,24 @@ function getOptions(): Options {
     (cwd: string) =>
       `The current directory ${cwd} doesn't have a framework-builder.json file. Either create ${cwd}/framework-builder.json or run \`$ framework-builder\` at the directory of your framework-builder.json file.`
   )
+
   const { entries } = content
   assertUsage(entries, 'Missing framework-builder.json#entries')
   assertUsage(
     Array.isArray(entries) && entries.every((e) => typeof e === 'string'),
     'framework-builder.json#entries should a list of strings'
   )
-  const options = { entries }
+
+  const { watch } = getCliArgs()
+
+  const options = { entries, watch }
   return options
+}
+
+function getCliArgs() {
+  const args = process.argv.slice(2)
+  const watch = args.includes('--watch')
+  return { watch }
 }
 
 function onRejection(rejectValue: unknown) {
